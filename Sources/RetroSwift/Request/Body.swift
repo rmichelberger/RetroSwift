@@ -1,9 +1,9 @@
 import Foundation
 
-@propertyWrapper struct Body<Value: Encodable> {
-    var wrappedValue: Data?
+@propertyWrapper public struct Body<Value: Encodable> {
+    public var wrappedValue: Data?
     
-    init(_ value: Value) {
+    public init(_ value: Value) {
         self.wrappedValue = try? JSONEncoder().encode(value)
     }
 }

@@ -1,9 +1,9 @@
 import Foundation
 
-@propertyWrapper struct Query<Value: CustomStringConvertible> {
-    var wrappedValue: URLQueryItem
+@propertyWrapper public struct Query<Value: CustomStringConvertible> {
+    public var wrappedValue: URLQueryItem
     
-    init(wrappedValue: Value? = nil, name: String) {
+    public init(wrappedValue: Value? = nil, name: String) {
         self.wrappedValue = URLQueryItem(name: name, value: wrappedValue?.description)
     }
 }

@@ -1,9 +1,9 @@
 import Foundation
 
-@propertyWrapper struct POST {
-    var wrappedValue: Request
+@propertyWrapper public struct POST {
+    public var wrappedValue: Request
 
-    init(baseURL: String,
+    public init(baseURL: String,
          path: String? = nil,
          queries: [URLQueryItem]? = nil,
          body: Data? = nil,
