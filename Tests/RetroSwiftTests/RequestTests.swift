@@ -20,8 +20,8 @@ final class RequestTests: XCTestCase {
                  queries: [query, escaped],
                  body: body,
                  headers: [header]) var request
-        XCTAssertEqual("asdf$%0A_%23?query=$%20%60%26%3D@&escaped=$%20%60%26%3D@", request.url?.absoluteString)
-        XCTAssertEqual("CONNECT", request.httpMethod)
-        XCTAssertEqual(request.httpBody, "{\"s\":\"😎\",\"i\":-1}".data(using: .utf8))
+        XCTAssertEqual("asdf$%0A_%23?query=$%20%60%26%3D@&escaped=$%20%60%26%3D@", request?.url?.absoluteString)
+        XCTAssertEqual("CONNECT", request?.httpMethod)
+        XCTAssertEqual(request?.httpBody, "{\"s\":\"😎\",\"i\":-1}".data(using: .utf8))
     }
 }
