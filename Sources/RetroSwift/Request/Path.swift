@@ -1,5 +1,6 @@
-@propertyWrapper public struct Path {
-    public var wrappedValue: String
+@propertyWrapper
+public struct Path {
+    public private(set) var wrappedValue: String
     
     public init(wrappedValue: CustomStringConvertible? = nil, path: String, name: String? = nil) {
         if let name, let value = wrappedValue?.description {

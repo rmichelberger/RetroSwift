@@ -1,7 +1,8 @@
 import Foundation
 
-@propertyWrapper public struct GET {
-    public var wrappedValue: Request
+@propertyWrapper
+public struct GET {
+    public private(set) var wrappedValue: Request
     
     public init(baseURL: String,
          path: String? = nil,

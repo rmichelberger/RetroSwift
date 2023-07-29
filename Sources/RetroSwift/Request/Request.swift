@@ -1,7 +1,8 @@
 import Foundation
 
-@propertyWrapper public struct Request {
-    public var wrappedValue: URLRequest?
+@propertyWrapper
+public struct Request {
+    public private(set) var wrappedValue: URLRequest?
         
     public enum HTTPMethod: String {
         case GET, HEAD, PUT, POST, DELETE, CONNECT, OPTIONS, TRACE, PATCH

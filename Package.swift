@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "RetroSwift",
-    platforms: [.macOS(.v10_14), .iOS(.v13), .tvOS(.v13), .watchOS(.v8)],
+    platforms: [.macOS(.v10_14), .iOS(.v11), .tvOS(.v11), .watchOS(.v8)],
     products: [.library(name: "RetroSwift", targets: ["RetroSwift"]),],
     targets: [
         .target(name: "RetroSwift"),

@@ -1,7 +1,8 @@
 import Foundation
 
-@propertyWrapper public struct PUT {
-    public var wrappedValue: Request
+@propertyWrapper
+public struct PUT {
+    public private(set) var wrappedValue: Request
 
     public init(baseURL: String,
          path: String? = nil,

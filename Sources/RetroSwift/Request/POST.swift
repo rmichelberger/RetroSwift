@@ -1,7 +1,8 @@
 import Foundation
 
-@propertyWrapper public struct POST {
-    public var wrappedValue: Request
+@propertyWrapper
+public struct POST {
+    public private(set) var wrappedValue: Request
 
     public init(baseURL: String,
          path: String? = nil,

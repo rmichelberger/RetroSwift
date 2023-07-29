@@ -1,7 +1,8 @@
 import Foundation
 
-@propertyWrapper public struct DELETE {
-    public var wrappedValue: Request
+@propertyWrapper
+public struct DELETE {
+    public private(set) var wrappedValue: Request
     
     public init(baseURL: String,
          path: String? = nil,
