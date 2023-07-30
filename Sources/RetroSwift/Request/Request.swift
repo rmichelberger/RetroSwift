@@ -15,7 +15,7 @@ public struct Request {
          path: String? = nil,
          queries: [URLQueryItem]? = nil,
          body: Data? = nil,
-         headers: [KeyValuePair<String, CustomStringConvertible?>]? = nil) {
+         headers: [HeaderType]? = nil) {
         guard var urlComponents = URLComponents(string: baseURL) else {
             wrappedValue = nil
             return
