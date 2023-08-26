@@ -53,13 +53,13 @@ The parameter must implement the `CustomStringConvertible` protocol.
 
 #### Query
 ```swift
-@Query(key: "key") var query = 123
+@Query(name: "name") var query = 123
 ```
 or
 ```swift
-@Query(key: "key") var query = "value"
+@Query(name: "name") var query = "value"
 ```
-The `key` needs to be a `String`, and the value must implement the `CustomStringConvertible` protocol.
+The `name` needs to be a `String`, and the value must implement the `CustomStringConvertible` protocol.
 
 #### Body
 ```swift
