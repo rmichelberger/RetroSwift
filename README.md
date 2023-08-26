@@ -21,23 +21,114 @@ or you can add the following dependency to your `Package.swift`:
 ```
 
 ## Usage
+### Request
 
+You can create HTTP requests the following way.
+First, you need to define the base URL as `String` and the HTTP method.
+
+#### Basic request
+Example:
 ```swift
-private let baseUrl = "https://example.com"
-
-func getItem(id: Int) async throws -> Item {
-    @Path(path: "/api/v1/items/{id}", name: "id") var path = id
-    @Query(name: "fields") var fields = "id,title"
-    @GET(baseURL: baseUrl, path: path, queries: [fields]) var request
-
-    guard let urlRequest = request.wrappedValue else { throw URLError(.badURL) }
-    let result = try await URLSession.shared.data(for: urlRequest)
-    let data = result.0
-    return try JSONDecoder().decode(Items.self, from: data)
-}
-
+let baseUrl = "https://example.com"
+@GET(baseURL: baseUrl) var request
 ```
 
+#### Path
+You can also optionally define a `path`.
+```swift
+@Path(path: "/my/path") var path
+```
+You can also define dynamic parameters in the `path`.
+Example:
+```swift
+let id = 123
+@Path(path: "/api/v1/items/{id}", name: "id") var path = id
+```
+or
+```swift
+let id = "xyz"
+@Path(path: "/api/v1/items/{parameter}", name: "parameter") var path = id
+```
+The parameter must implement the `CustomStringConvertible` protocol.
+
+#### Query
+```swift
+@Query(key: "key") var query = 123
+```
+or
+```swift
+@Query(key: "key") var query = "value"
+```
+The `key` needs to be a `String`, and the value must implement the `CustomStringConvertible` protocol.
+
+#### Body
+```swift
+@Body(value: value) var body
+```
+The `value` must implement the `Encodable` protocol.
+
+You can also define your own `DataEncoder`, the default one is `JSONEncoder`.
+```swift
+@Body(value: value, encoder: encoder) var body
+```
+
+Complete example:
+```swift
+func getItem(id: Int) async throws -> Item {
+    let baseUrl = "https://example.com"
+
+    @Path(path: "/api/v1/items/{id}", name: "id") var path = id
+    @Query(name: "fields") var fields = "id,title"
+    @Query(name: "limit") var fields = 100
+    @GET(baseURL: baseUrl, path: path, queries: [fields]) var request
+    return try await retroSwift.execute(request: request)
+}
+```
+
+This will generate following request:
+
+`HTTP GET https://example.com/api/v1/items/14572?fields=id,title&limit=100`
+
+Supported methods:
+ HTTP Method | Signature
+ --- | --- 
+GET | `@GET(...)` 
+PUT | `@PUT(...)`
+POST | `@POST(...)`
+DELETE | `@DELETE(...)`
+OPTIONS | coming soon
+TRACE | coming soon
+PATCH | coming soon
+CONNECT | coming soon
+HEAD | coming soon
+
+### HTTP client
+
+You need to provide a HTTP client to `RetroSwift`.
+This client must implement the `HTTPClient` protocol:
+
+```swift
+public protocol HTTPClient {
+    func execute<T: Decodable>(request: URLRequest) async throws -> T
+}
+```
+
+It's recommended to use [OkHTTPClient](https://github.com/rmichelberger/OkHttpClient/) as the networking client.
+
+
+## TODO
+
+- [ ] Add dynamic parameter list to `@Path`.
+- [ ] Add `Data` init to `@Body`.
+
+Improve unit test coverage.
+
+## Contributing
+
+We always appreciate contributions from the community.
+Please make sure to cover your changes with unit tests.
+
+#
 Inspired by [Retrofit](https://square.github.io/retrofit/).
 
 
