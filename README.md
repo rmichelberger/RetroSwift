@@ -148,8 +148,7 @@ It's recommended to use [OkHTTPClient](https://github.com/rmichelberger/OkHttpCl
 - [ ] Add dynamic parameter list to `@Path`.
 - [ ] Add `Data` init to `@Body`.
 - [ ] Improve documentation
-
-Improve unit test coverage.
+- [ ] Improve unit test coverage.
 
 ## Contributing
 
