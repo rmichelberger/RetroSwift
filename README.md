@@ -72,11 +72,38 @@ You can also define your own `DataEncoder`, the default one is `JSONEncoder`.
 @Body(value: value, encoder: encoder) var body
 ```
 
-Complete example:
+You can add the body to the HTTP request:
 ```swift
 func getItem(id: Int) async throws -> Item {
     let baseUrl = "https://example.com"
 
+    @Path(path: "/api/v1/items/{id}", name: "id") var path = id
+
+    let user = ["Name": "John Doe"]
+    @Body(value: user) var body
+    @POST(baseURL: baseUrl, path: path, body: body) var request
+    return try await retroSwift.execute(request: request)
+}
+```
+
+### Header
+
+You can specify the headers as following:
+
+```swift
+@Header(name: "Content-Type") var contentType = "application/json"
+```
+
+The `name` is the name of the header, and the value must conform the `CustomStringConvertible` protocol.
+
+
+### Example Request
+
+```swift
+func getItem(id: Int) async throws -> Item {
+    let client = ... // see below
+    let baseUrl = "https://example.com"
+    let retroSwift = RetroSwift(client: client)
     @Path(path: "/api/v1/items/{id}", name: "id") var path = id
     @Query(name: "fields") var fields = "id,title"
     @Query(name: "limit") var fields = 100
@@ -108,7 +135,7 @@ You need to provide a HTTP client to `RetroSwift`.
 This client must implement the `HTTPClient` protocol:
 
 ```swift
-public protocol HTTPClient {
+protocol HTTPClient {
     func execute<T: Decodable>(request: URLRequest) async throws -> T
 }
 ```
