@@ -1,6 +1,6 @@
 # RetroSwift
 
-[![SwiftPM](https://img.shields.io/badge/SPM-supported-DE5C43.svg?style=flat)](https://swift.org/package-manager/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![SwiftPM](https://img.shields.io/badge/SPM-supported-DE5C43.svg?style=flat)](https://swift.org/package-manager/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Frmichelberger%2FRetroSwift%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/rmichelberger/RetroSwift) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Frmichelberger%2FRetroSwift%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/rmichelberger/RetroSwift)
 
 A leightweigth REST API request generator library for Swift.
 
